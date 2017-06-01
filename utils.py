@@ -18,10 +18,10 @@ def deconvolution(x, filter_size, stride_size, output_size):
                         shape = filter_size,
                         initializer= tf.random_normal_initializer())
     b = tf.get_variable(name = 'conv_biases',
-                        shape = filter_size[3], 
+                        shape = filter_size[2], 
                         initializer = tf.random_normal_initializer())
 
-    return tf.nn.conv2d_transpose(x, w, strides = stride_size, output_shape= output_size, padding='SAME')
+    return tf.nn.conv2d_transpose(x, w, strides = stride_size, output_shape= output_size, padding='SAME') + b
 
 def convolution(x, height, width, in_layer, out_layer):
     w = tf.get_variable(name = 'conv_weights',
